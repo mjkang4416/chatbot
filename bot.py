@@ -18,11 +18,10 @@ from train_tool.qna.create_empadding_data import create_embedding_data
 
 # 전처리 객체 생성
 try:
-    p = Preprocess(word2index_dic='./train_tool/dict/chatbot_dict.bin',
-                   userdic='./utils/user_dic.tsv')
+    p = Preprocess(word2index_dic=word2index_path, userdic=userdic_path)
     print("텍스트 전처리기 로드 완료..")
-except:
-    print("텍스트 전처리기 로드 실패..")
+except Exception as e:
+    print(f"텍스트 전처리기 로드 실패.. 에러: {e}")
 
 # 의도 파악 모델
 try:
