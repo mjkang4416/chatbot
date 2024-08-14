@@ -27,14 +27,14 @@ except Exception as e:
 try:
     intent = IntentModel(model_name='./models/intent/intent_model.h5', preprocess=p)
     print("의도 파악 모델 로드 완료..")
-except:
+except Exception as e:
     print(f"의도 파악 모델 로드 실패.. 에러: {e}")
 
 #엑셀 파일 로드
 try:
     df = pd.read_excel('./train_tool/qna/train_data.xlsx')
     print("엑셀 파일 로드 완료..")
-except:
+except Exception as e:
     print(f"엑셀 파일 로드 실패.. 에러: {e}")
 
 # pt 파일 갱신 및 불러오기
