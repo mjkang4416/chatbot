@@ -18,7 +18,7 @@ from train_tool.qna.create_empadding_data import create_embedding_data
 
 # 전처리 객체 생성
 try:
-    p = Preprocess(word2index_dic='./train_tool/dict/chatbot_dict.bin',
+    p = Preprocess(word2index_dic='train_tool/dict/chatbot_dict.bin',
                    userdic='./utils/user_dic.tsv')
     print("텍스트 전처리기 로드 완료..")
 except:
@@ -26,14 +26,14 @@ except:
 
 # 의도 파악 모델
 try:
-    intent = IntentModel(model_name='./models/intent/intent_model.h5', preprocess=p)
+    intent = IntentModel(model_name='models/intent/intent_model.h5', preprocess=p)
     print("의도 파악 모델 로드 완료..")
 except:
     print("의도 파악 모델 로드 실패..")
 
 #엑셀 파일 로드
 try:
-    df = pd.read_excel('./train_tool/qna/train_data.xlsx')
+    df = pd.read_excel('train_tool/qna/train_data.xlsx')
     print("엑셀 파일 로드 완료..")
 except:
     print("엑셀 파일 로드 실패..")
@@ -42,7 +42,7 @@ except:
 try:
     create_embedding_data = create_embedding_data(df=df, preprocess=p)
     create_embedding_data.create_pt_file()
-    embedding_data = torch.load('./embedding_data.pt')
+    embedding_data = torch.load('embedding_data.pt')
     print(df['질문(Query)'].dtype)
     print(type(embedding_data))
     print("임베딩 pt 파일 갱신 및 로드 완료..")
